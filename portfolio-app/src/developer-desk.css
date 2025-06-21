@@ -1,0 +1,471 @@
+/* Developer Desk Simulator Styles */
+.devdesk-section {
+  margin: 2rem auto;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #f7fafd 70%, #e3f0ff 100%);
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(33, 212, 253, 0.10), 0 2px 24px #b721ff11;
+  max-width: 650px;
+  text-align: center;
+  position: relative;
+  transition: background 0.4s;
+}
+.desk-setup {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  margin-top: 2rem;
+  position: relative;
+  min-height: 220px;
+}
+.desk-monitor {
+  width: 140px;
+  height: 100px;
+  background: #222;
+  border-radius: 8px 8px 2px 2px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #1976d2;
+}
+.monitor-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
+}
+.monitor-label {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+  color: #1976d2;
+}
+.desk-laptop {
+  width: 90px;
+  height: 60px;
+  background: #444;
+  border-radius: 6px 6px 12px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.desk-laptop:hover { transform: scale(1.07) rotate(-2deg); }
+.laptop-screen {
+  width: 80px;
+  height: 30px;
+  background: #222;
+  border-radius: 4px 4px 2px 2px;
+  position: absolute;
+  top: 6px;
+  left: 5px;
+}
+.laptop-label {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+  color: #444;
+}
+.desk-mug {
+  width: 38px;
+  height: 48px;
+  position: relative;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.desk-mug:hover .mug-body { background: #ffd200; }
+.mug-body {
+  width: 28px;
+  height: 38px;
+  background: #fff;
+  border-radius: 0 0 14px 14px;
+  border: 2px solid #b721ff;
+  margin-top: 6px;
+  box-shadow: 0 2px 8px rgba(183,33,255,0.10);
+  transition: background 0.2s;
+}
+.mug-handle {
+  width: 10px;
+  height: 18px;
+  border: 2px solid #b721ff;
+  border-radius: 0 10px 10px 0;
+  position: absolute;
+  right: -8px;
+  top: 14px;
+  background: none;
+}
+.mug-label {
+  font-size: 0.9rem;
+  color: #b721ff;
+  margin-top: 2px;
+}
+.desk-sticky {
+  width: 60px;
+  height: 60px;
+  background: #ffd200;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(255,210,0,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: -30px;
+  text-decoration: none;
+  color: #222;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transform: rotate(-8deg);
+  transition: background 0.2s;
+}
+.desk-sticky:hover { background: #ffe066; }
+
+.desk-mouse {
+  width: 32px;
+  height: 48px;
+  position: relative;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mouse-body {
+  width: 22px;
+  height: 36px;
+  background: #eee;
+  border-radius: 12px 12px 18px 18px;
+  border: 2px solid #888;
+  margin-top: 8px;
+  box-shadow: 0 2px 6px rgba(136,136,136,0.10);
+}
+.mouse-wheel {
+  width: 6px;
+  height: 8px;
+  background: #888;
+  border-radius: 3px;
+  position: absolute;
+  top: 16px;
+  left: 13px;
+}
+.mouse-label {
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 2px;
+}
+.desk-headphone {
+  width: 54px;
+  height: 44px;
+  position: relative;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.headband {
+  width: 38px;
+  height: 18px;
+  border: 4px solid #1976d2;
+  border-bottom: none;
+  border-radius: 24px 24px 0 0;
+  position: absolute;
+  top: 0;
+  left: 8px;
+  background: none;
+}
+.earpad {
+  width: 12px;
+  height: 18px;
+  background: #1976d2;
+  border-radius: 8px;
+  position: absolute;
+  top: 14px;
+}
+.earpad.left { left: 0; }
+.earpad.right { right: 0; }
+.headphone-label {
+  font-size: 0.9rem;
+  color: #1976d2;
+  margin-top: 32px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.desk-gamepad {
+  width: 54px;
+  height: 38px;
+  position: relative;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.gamepad-body {
+  width: 44px;
+  height: 22px;
+  background: #222;
+  border-radius: 12px 12px 18px 18px / 18px 18px 12px 12px;
+  margin-top: 10px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(34,34,34,0.10);
+}
+.gamepad-stick.left {
+  width: 8px;
+  height: 8px;
+  background: #ffd200;
+  border-radius: 50%;
+  position: absolute;
+  top: 16px;
+  left: 10px;
+}
+.gamepad-stick.right {
+  width: 8px;
+  height: 8px;
+  background: #b721ff;
+  border-radius: 50%;
+  position: absolute;
+  top: 16px;
+  right: 10px;
+}
+.gamepad-btn.a {
+  width: 7px;
+  height: 7px;
+  background: #21d4fd;
+  border-radius: 50%;
+  position: absolute;
+  top: 22px;
+  left: 18px;
+}
+.gamepad-btn.b {
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 22px;
+  right: 18px;
+}
+.gamepad-label {
+  font-size: 0.9rem;
+  color: #222;
+  margin-top: 2px;
+  position: absolute;
+  left: 50%;
+  top: 34px;
+  transform: translateX(-50%);
+}
+.terminal-overlay, .easteregg-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(24,28,36,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.terminal-window {
+  background: #181c24;
+  border-radius: 8px;
+  width: 340px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  overflow: hidden;
+}
+.terminal-bar {
+  background: #23272f;
+  color: #ffd200;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.terminal-content {
+  color: #21d4fd;
+  font-family: 'Fira Mono', 'Consolas', monospace;
+  background: #181c24;
+  padding: 1rem;
+  font-size: 1.1rem;
+  min-height: 100px;
+}
+.easteregg-message {
+  background: #fff;
+  color: #b721ff;
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 16px rgba(183,33,255,0.10);
+  text-align: center;
+}
+@media (max-width: 700px) {
+  .devdesk-section { max-width: 98vw; }
+  .desk-setup { flex-direction: column; align-items: center; min-height: 320px; }
+  .desk-sticky { right: 10px; top: 0; }
+}
+
+.surge-blur {
+  filter: blur(2px) brightness(0.8) grayscale(0.2);
+  pointer-events: none;
+  user-select: none;
+}
+.surge-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(24,28,36,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+.surge-terminal-glow {
+  background: #181c24;
+  border-radius: 12px;
+  box-shadow: 0 0 32px 8px #21d4fd, 0 2px 24px #b721ff;
+  padding: 1.5rem 2rem;
+  min-width: 340px;
+  animation: surge-glow 1.2s infinite alternate;
+}
+@keyframes surge-glow {
+  0% { box-shadow: 0 0 32px 8px #21d4fd, 0 2px 24px #b721ff; }
+  100% { box-shadow: 0 0 48px 16px #b721ff, 0 2px 32px #21d4fd; }
+}
+.surge-terminal-bar {
+  background: #23272f;
+  color: #ffd200;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 8px 8px 0 0;
+}
+.surge-terminal-content {
+  color: #21d4fd;
+  font-family: 'Fira Mono', 'Consolas', monospace;
+  background: #181c24;
+  padding: 1rem 0.5rem;
+  font-size: 1.1rem;
+  min-height: 100px;
+  text-align: left;
+}
+.surge-popup {
+  color: #ffd200;
+  font-weight: bold;
+  margin: 1rem 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+.surge-timer {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.surge-exit-btn {
+  background: #b721ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+.surge-exit-btn:hover { background: #21d4fd; }
+
+.music-panel {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(33,212,253,0.10);
+  padding: 1rem 2rem;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  animation: music-fadein 0.5s;
+}
+@keyframes music-fadein {
+  from { opacity: 0; transform: translateX(-50%) scale(0.9); }
+  to { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+.headphone-glow .headband, .headphone-glow .earpad {
+  box-shadow: 0 0 16px 4px #21d4fd, 0 2px 8px #b721ff;
+  background: #21d4fd !important;
+  transition: box-shadow 0.3s, background 0.3s;
+}
+
+.games-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(24,28,36,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10002;
+}
+.games-window {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 24px #b721ff44;
+  min-width: 340px;
+  padding: 2rem 2.5rem;
+  text-align: center;
+  position: relative;
+}
+.games-bar {
+  background: #23272f;
+  color: #ffd200;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 1rem;
+}
+.games-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.game-btn {
+  background: #21d4fd;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.game-btn:hover { background: #b721ff; }
+.game-btn.played { background: #ffd200; color: #23272f; }
+.games-progress {
+  color: #1976d2;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.games-bonus {
+  color: #b721ff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+.gamepad-anim {
+  animation: gamepad-jump 0.4s;
+}
+@keyframes gamepad-jump {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-18px) scale(1.1); }
+  60% { transform: translateY(2px) scale(0.98); }
+  100% { transform: translateY(0); }
+}
+.desk-mouse,
+.desk-headphone,
+.desk-gamepad {
+  cursor: pointer;
+}
