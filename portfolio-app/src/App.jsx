@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import ownerImg from '/image/owner.jpg';
-import DeveloperDesk from './DeveloperDesk';
-import './developer-desk.css';
 
 function App() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -82,6 +80,7 @@ function App() {
           <li><a href="#home" onClick={() => setActiveSection('home')}>Home</a></li>
           <li><a href="#about" onClick={() => setActiveSection('about')}>About</a></li>
           <li><a href="#experience" onClick={() => setActiveSection('experience')}>Experience</a></li>
+          <li><a href="#projects" onClick={() => setActiveSection('projects')}>Projects</a></li>
           <li><a href="#tools" onClick={() => setActiveSection('tools')}>Tools</a></li>
           <li><a href="#resume" onClick={() => setActiveSection('resume')}>Resume</a></li>
           <li><a href="#contact" onClick={() => setActiveSection('contact')}>Contact</a></li>
@@ -96,8 +95,6 @@ function App() {
       </div>
 
       <main>
-        {/* Developer Desk Simulator - fun interactive mini-game */}
-        <DeveloperDesk />
         {activeSection === 'home' && (
           <section id="home" className="home-section">
             <div className="home-video-bg">
@@ -169,6 +166,34 @@ function App() {
                     </div>
                     <p className="experience-company">Worknai Pvt Ltd</p>
                     <p className="experience-description">Worked on web development projects, learned best practices in coding standards, and assisted in implementing client requirements using modern web technologies.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Projects Section */}
+            <div className="home-section-divider"></div>
+            <div className="projects-video-bg">
+              <video autoPlay loop muted playsInline className="projects-bg-video">
+                <source src="/video/tools.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="projects-content">
+                <h2>My Projects</h2>
+                <div className="projects-grid">
+                  <div className="project-card">
+                    <div className="project-header">
+                      <h3>Raktdaan - Blood Donation Platform</h3>
+                    </div>
+                    <p className="project-description">A comprehensive blood donation platform that connects blood donors with recipients. Built with modern web technologies to make blood donation accessible and efficient.</p>
+                    <div className="project-tech">
+                      <span className="tech-tag">React</span>
+                      <span className="tech-tag">Node.js</span>
+                      <span className="tech-tag">MongoDB</span>
+                    </div>
+                    <a href="https://www.raktdaan.online/" target="_blank" rel="noopener noreferrer" className="project-link">
+                      🔗 Visit Website
+                    </a>
                   </div>
                 </div>
               </div>
@@ -302,6 +327,35 @@ function App() {
                     </div>
                     <p className="experience-company">Worknai Pvt Ltd</p>
                     <p className="experience-description">Worked on web development projects, learned best practices in coding standards, and assisted in implementing client requirements using modern web technologies.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+        {activeSection === 'projects' && (
+          <section id="projects">
+            <div className="projects-video-bg">
+              <video autoPlay loop muted playsInline className="projects-bg-video">
+                <source src="/video/tools.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="projects-content">
+                <h2>My Projects</h2>
+                <div className="projects-grid">
+                  <div className="project-card">
+                    <div className="project-header">
+                      <h3>Raktdaan - Blood Donation Platform</h3>
+                    </div>
+                    <p className="project-description">A comprehensive blood donation platform that connects blood donors with recipients. Built with modern web technologies to make blood donation accessible and efficient.</p>
+                    <div className="project-tech">
+                      <span className="tech-tag">React</span>
+                      <span className="tech-tag">Node.js</span>
+                      <span className="tech-tag">MongoDB</span>
+                    </div>
+                    <a href="https://www.raktdaan.online/" target="_blank" rel="noopener noreferrer" className="project-link">
+                      🔗 Visit Website
+                    </a>
                   </div>
                 </div>
               </div>
