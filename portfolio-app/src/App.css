@@ -238,6 +238,18 @@ button[type="submit"]:hover {
   text-align: center;
   transition: color 0.3s, text-shadow 0.3s, border-color 0.3s;
 }
+.home-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.home-section-divider {
+  height: 2px;
+  background: linear-gradient(to right, transparent, #b721ff, transparent);
+  margin: 1rem 0;
+}
+
 .home-video-bg {
   position: relative;
   width: 100%;
@@ -352,6 +364,84 @@ button[type="submit"]:hover {
   padding: 2.5rem 1rem;
   color: #222;
 }
+.experience-video-bg {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fff;
+}
+.experience-bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.35;
+}
+.experience-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 2.5rem 1rem;
+  text-align: left;
+  color: #222;
+}
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.experience-item {
+  background: rgba(255, 255, 255, 0.5);
+  border-left: 4px solid #b721ff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+.experience-item:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateX(8px);
+  box-shadow: 0 4px 12px rgba(183, 33, 255, 0.2);
+}
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.experience-header h3 {
+  margin: 0;
+  color: #b721ff;
+  font-size: 1.3rem;
+}
+.experience-date {
+  background: #b721ff;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.experience-company {
+  margin: 0.3rem 0 0.8rem 0;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.1rem;
+}
+.experience-description {
+  margin: 0;
+  color: #555;
+  line-height: 1.6;
+}
 .linkedin-icon, .instagram-icon {
   width: 28px;
   height: 28px;
@@ -370,11 +460,11 @@ button[type="submit"]:hover {
     width: 100%;
     justify-content: flex-start;
   }
-  .home-video-bg, .about-video-bg, .tools-video-bg, .resume-video-bg, .contact-video-bg {
+  .home-video-bg, .about-video-bg, .tools-video-bg, .resume-video-bg, .contact-video-bg, .experience-video-bg {
     min-height: 180px;
     border-radius: 8px;
   }
-  .home-content, .about-content, .tools-content, .resume-content, .contact-content {
+  .home-content, .about-content, .tools-content, .resume-content, .contact-content, .experience-content {
     padding: 1.2rem 0.2rem;
   }
   .linkedin-icon, .instagram-icon {

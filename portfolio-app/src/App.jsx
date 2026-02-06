@@ -81,6 +81,7 @@ function App() {
         <ul className="navbar-links">
           <li><a href="#home" onClick={() => setActiveSection('home')}>Home</a></li>
           <li><a href="#about" onClick={() => setActiveSection('about')}>About</a></li>
+          <li><a href="#experience" onClick={() => setActiveSection('experience')}>Experience</a></li>
           <li><a href="#tools" onClick={() => setActiveSection('tools')}>Tools</a></li>
           <li><a href="#resume" onClick={() => setActiveSection('resume')}>Resume</a></li>
           <li><a href="#contact" onClick={() => setActiveSection('contact')}>Contact</a></li>
@@ -115,6 +116,137 @@ function App() {
                 </a>
               </div>
             </div>
+
+            {/* About Section */}
+            <div className="home-section-divider"></div>
+            <div className="about-video-bg">
+              <video autoPlay loop muted playsInline className="about-bg-video">
+                <source src="/video/building.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="about-content">
+                <h2>About Me</h2>
+                <p>I'm a software developer with a strong foundation in computer science and hands-on experience in modern web technologies. My journey began with curiosity for how websites work, and over time, it evolved into a deep passion for crafting powerful user experiences. I enjoy solving real-world problems, collaborating with teams, and continually learning new technologies to stay ahead in this fast-paced industry.</p>
+                <ul className="about-highlights">
+                  <li>🎓 Completed my post-graduation (PG) in MCA.</li>
+                  <li>💼 Interned at Internship Studio.</li>
+                  <li>🖥️ Currently working at Devcon Software Solution.</li>
+                </ul>
+                <p>When I'm not coding, you can find me exploring new tech blogs, reading productivity books, or experimenting with creative UI designs.</p>
+              </div>
+            </div>
+
+            {/* Experience Section */}
+            <div className="home-section-divider"></div>
+            <div className="experience-video-bg">
+              <video autoPlay loop muted playsInline className="experience-bg-video">
+                <source src="/video/building.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="experience-content">
+                <h2>Work Experience</h2>
+                <div className="experience-list">
+                  <div className="experience-item">
+                    <div className="experience-header">
+                      <h3>MERN Developer</h3>
+                      <span className="experience-date">Dec 2025 - Present</span>
+                    </div>
+                    <p className="experience-company">Nimbja Security Solution Pvt Ltd</p>
+                    <p className="experience-description">Developing full-stack applications using MERN stack (MongoDB, Express.js, React.js, Node.js) for enterprise security solutions.</p>
+                  </div>
+                  <div className="experience-item">
+                    <div className="experience-header">
+                      <h3>Intern</h3>
+                      <span className="experience-date">Jul 2025 - Oct 2025</span>
+                    </div>
+                    <p className="experience-company">Internship Studi</p>
+                    <p className="experience-description">Gained practical experience in web development, collaborated with senior developers, and contributed to various frontend and backend projects.</p>
+                  </div>
+                  <div className="experience-item">
+                    <div className="experience-header">
+                      <h3>Intern</h3>
+                      <span className="experience-date">Jan 2025 - Jun 2025</span>
+                    </div>
+                    <p className="experience-company">Worknai Pvt Ltd</p>
+                    <p className="experience-description">Worked on web development projects, learned best practices in coding standards, and assisted in implementing client requirements using modern web technologies.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tools Section */}
+            <div className="home-section-divider"></div>
+            <div className="tools-video-bg">
+              <video autoPlay loop muted playsInline className="tools-bg-video">
+                <source src="/video/tools.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="tools-content">
+                <h2>Tools & Technologies</h2>
+                <ul>
+                  <li><strong>Frontend:</strong> React, HTML5, CSS3, JavaScript, Tailwind CSS</li>
+                  <li><strong>Backend:</strong> Node.js, Express.js</li>
+                  <li><strong>Database:</strong> MongoDB, Firebase</li>
+                  <li><strong>Tools & Platforms:</strong> Git, GitHub, Postman, Vercel, Netlify</li>
+                  <li><strong>Others:</strong> REST APIs, JWT Auth, MVC Architecture</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Resume Section */}
+            <div className="home-section-divider"></div>
+            <div className="resume-video-bg">
+              <video autoPlay loop muted playsInline className="resume-bg-video">
+                <source src="/video/resume.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="resume-content">
+                <h2>Resume</h2>
+                <a href="/image/ShubhamsResume.pdf" target="_blank" rel="noopener noreferrer" className="resume-link">
+                  📄 View or Download My Resume
+                </a>
+              </div>
+            </div>
+
+            {/* Contact Section */}
+            <div className="home-section-divider"></div>
+            <div className="contact-video-bg">
+              <video autoPlay loop muted playsInline className="contact-bg-video">
+                <source src="/video/gojo.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="contact-content">
+                <h2>Contact Me</h2>
+                <p>If you'd like to connect, collaborate, or discuss a project, feel free to drop a message below:</p>
+                <form onSubmit={handleSubmit}>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                  />
+                  <textarea
+                    name="message"
+                    placeholder="Your Message"
+                    value={form.message}
+                    onChange={handleChange}
+                    required
+                  ></textarea>
+                  <button type="submit" disabled={status === 'Sending...'}>Send</button>
+                </form>
+                {status && <p>{status}</p>}
+              </div>
+            </div>
           </section>
         )}
         {activeSection === 'about' && (
@@ -133,6 +265,45 @@ function App() {
                   <li>🖥️ Currently working at Devcon Software Solution.</li>
                 </ul>
                 <p>When I'm not coding, you can find me exploring new tech blogs, reading productivity books, or experimenting with creative UI designs.</p>
+              </div>
+            </div>
+          </section>
+        )}
+        {activeSection === 'experience' && (
+          <section id="experience">
+            <div className="experience-video-bg">
+              <video autoPlay loop muted playsInline className="experience-bg-video">
+                <source src="/video/building.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="experience-content">
+                <h2>Work Experience</h2>
+                <div className="experience-list">
+                  <div className="experience-item">
+                    <div className="experience-header">
+                      <h3>MERN Developer</h3>
+                      <span className="experience-date">Dec 2025 - Present</span>
+                    </div>
+                    <p className="experience-company">Nimbja Security Solution Pvt Ltd</p>
+                    <p className="experience-description">Developing full-stack applications using MERN stack (MongoDB, Express.js, React.js, Node.js) for enterprise security solutions.</p>
+                  </div>
+                  <div className="experience-item">
+                    <div className="experience-header">
+                      <h3>Intern</h3>
+                      <span className="experience-date">Jul 2025 - Oct 2025</span>
+                    </div>
+                    <p className="experience-company">Internship Studi</p>
+                    <p className="experience-description">Gained practical experience in web development, collaborated with senior developers, and contributed to various frontend and backend projects.</p>
+                  </div>
+                  <div className="experience-item">
+                    <div className="experience-header">
+                      <h3>Intern</h3>
+                      <span className="experience-date">Jan 2025 - Jun 2025</span>
+                    </div>
+                    <p className="experience-company">Worknai Pvt Ltd</p>
+                    <p className="experience-description">Worked on web development projects, learned best practices in coding standards, and assisted in implementing client requirements using modern web technologies.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
