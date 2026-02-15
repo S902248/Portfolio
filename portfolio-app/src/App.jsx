@@ -1,41 +1,22 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import ownerImg from '/image/owner.jpg';
+const ownerImg = "/image/owner.jpg";
 
 function App() {
+  const [activeTab, setActiveTab] = useState('home');
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('');
-  const [typedText, setTypedText] = useState('');
-  const [ownerName, setOwnerName] = useState('');
-  const [activeSection, setActiveSection] = useState('home');
-  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
-  const welcomeText = 'Welcome To My Portfolio';
-  const fullOwnerName = 'Shubham Adhav';
+  const [typedBrand, setTypedBrand] = useState('');
 
   useEffect(() => {
-    let index = 0;
+    const brand = "Shubham Adhav";
+    let i = 0;
     const interval = setInterval(() => {
-      if (index <= welcomeText.length) {
-        setTypedText(welcomeText.slice(0, index));
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 70);
-    return () => clearInterval(interval);
-  }, [welcomeText]);
-
-  useEffect(() => {
-    let idx = 0;
-    setOwnerName('');
-    const interval = setInterval(() => {
-      if (idx <= fullOwnerName.length) {
-        setOwnerName(fullOwnerName.slice(0, idx));
-        idx++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 90);
+      setTypedBrand(brand.slice(0, i));
+      i++;
+      if (i > brand.length) clearInterval(interval);
+    }, 100);
     return () => clearInterval(interval);
   }, []);
 
@@ -52,8 +33,7 @@ function App() {
     e.preventDefault();
     setStatus('Sending...');
     try {
-      // const res = await fetch('http://localhost:5000/api/contact', {
-         const res = await fetch('https://poerfolio.onrender.com/api/contact', {
+      const res = await fetch('https://poerfolio.onrender.com/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -70,375 +50,301 @@ function App() {
     }
   };
 
+  const projects = [
+    {
+      id: 1,
+      title: "Raktdaan",
+      desc: "Blood Donation Platform connecting donors with recipients. Built with React, Node.js, and MongoDB.",
+      tech: ["React", "Node.js", "MongoDB"],
+      link: "https://www.raktdaan.online/",
+      img: "https://plus.unsplash.com/premium_photo-1673953509975-576678fa6710?q=80&w=2000&auto=format&fit=crop",
+      theme: "red-accent"
+    },
+    {
+      id: 2,
+      title: "Carnomia",
+      desc: "Modern automotive marketplace showcasing cars with a clean UI and powerful search.",
+      tech: ["React", "Next.js", "API"],
+      link: "https://carnomia.com/",
+      img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop",
+    },
+    {
+      id: 3,
+      title: "Cloud Kitchen",
+      desc: "A premium MERN stack application for food ordering with nested categories and real-time tracking.",
+      tech: ["MongoDB", "Express", "React", "Node.js"],
+      link: "https://cloud-kitchen-nnz5.vercel.app/",
+      img: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2000&auto=format&fit=crop",
+      theme: "orange-accent"
+    }
+  ];
+
+  const experience = [
+    {
+      role: "Full Stack Developer",
+      company: "Nimbusja Security Solution Pvt. Ltd.",
+      date: "May 2025 - Present",
+      points: [
+        "Developing secure and scalable MERN stack applications",
+        "Designing RESTful APIs using Node.js and Express.js",
+        "Implementing JWT-based authentication and RBAC",
+        "Improving performance, security, and code quality"
+      ]
+    },
+    {
+      role: "Software Developer (MERN Stack) - Intern",
+      company: "WorknAI Technology Pvt. Ltd.",
+      date: "Nov 2024 - Apr 2025",
+      points: [
+        "Built reusable React components and optimized UI performance",
+        "Developed backend APIs for authentication and CRUD operations",
+        "Collaborated with cross-functional teams in agile environment"
+      ]
+    },
+    {
+      role: "Web Development Intern",
+      company: "Internship Studio",
+      date: "Oct 2024",
+      points: [
+        "Built responsive UI using HTML, CSS, and JavaScript",
+        "Learned Git workflows and collaborative development"
+      ]
+    }
+  ];
+
+  const tools = [
+    { category: "Frontend", items: "React, HTML5, CSS3, JavaScript, Tailwind CSS" },
+    { category: "Backend", items: "Node.js, Express.js" },
+    { category: "Database", items: "MongoDB, Firebase" },
+    { category: "Others", items: "REST APIs, JWT Auth, MVC Architecture, Git, GitHub, Postman, Vercel, Netlify" }
+  ];
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navigateTo = (tab) => {
+    setActiveTab(tab);
+    setIsMenuOpen(false); // Close menu on navigation
+    const container = document.querySelector('.showcase-scroll');
+    if (container) {
+      container.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+  };
+
+  // Interactive Cursor Aura
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
-    <div className="portfolio-navbar-layout">
-      <nav className="navbar">
-        <div className="navbar-left">
-          <span className="navbar-portfolio-title">Port<span style={{color:'#ffd200'}}>folio</span></span>
+    <div className="portfolio-container">
+      {/* SIDEBAR */}
+      {/* NEW NAVIGATION BAR */}
+      <nav className="main-nav">
+        <div className="nav-container">
+          <div className="nav-left">
+            <div className="nav-profile">
+              <img src={ownerImg} alt="Shubham" className="nav-avatar" />
+              <div className="nav-info">
+                <span className="nav-name">Shubham Adhav</span>
+                <span className="nav-status">💼 Available</span>
+              </div>
+            </div>
+          </div>
+
+          <button
+            className={`hamburger ${isMenuOpen ? 'open' : ''}`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <div className={`nav-center ${isMenuOpen ? 'mobile-show' : ''}`}>
+            <div className={`nav-pills ${isMenuOpen ? 'mobile-open' : ''}`}>
+              <a href="#" className={activeTab === 'home' ? 'active' : ''} onClick={(e) => { e.preventDefault(); navigateTo('home'); }}>Home</a>
+              <a href="#" className={activeTab === 'projects' ? 'active' : ''} onClick={(e) => { e.preventDefault(); navigateTo('projects'); }}>Projects</a>
+              <a href="#" className={activeTab === 'about' ? 'active' : ''} onClick={(e) => { e.preventDefault(); navigateTo('about'); }}>About</a>
+              <a href="#" className={activeTab === 'experience' ? 'active' : ''} onClick={(e) => { e.preventDefault(); navigateTo('experience'); }}>Experience</a>
+            </div>
+          </div>
+
+          <div className="nav-right">
+            <div className="nav-actions">
+              <button className="btn-icon-mode" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+                {theme === 'dark' ? '☀️' : '🌙'}
+              </button>
+              <a href="/image/shubh.pdf" target="_blank" className="btn-resume-new">
+                Resume <span>↓</span>
+              </a>
+            </div>
+          </div>
         </div>
-        <ul className="navbar-links">
-          <li><a href="#home" onClick={() => setActiveSection('home')}>Home</a></li>
-          <li><a href="#about" onClick={() => setActiveSection('about')}>About</a></li>
-          <li><a href="#experience" onClick={() => setActiveSection('experience')}>Experience</a></li>
-          <li><a href="#projects" onClick={() => setActiveSection('projects')}>Projects</a></li>
-          <li><a href="#tools" onClick={() => setActiveSection('tools')}>Tools</a></li>
-          <li><a href="#resume" onClick={() => setActiveSection('resume')}>Resume</a></li>
-          <li><a href="#contact" onClick={() => setActiveSection('contact')}>Contact</a></li>
-        </ul>
-        <button className="theme-toggle" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-          {theme === 'dark' ? '🌙 Dark Mode' : '☀️ Light Mode'}
-        </button>
       </nav>
-      <div className="owner-img-container">
-        <img src={ownerImg} alt="Owner" className="owner-img" />
-        <div className="owner-name stylish-name">{ownerName}</div>
-      </div>
 
-      <main>
-        {activeSection === 'home' && (
-          <section id="home" className="home-section">
-            <div className="home-video-bg">
-              <video autoPlay loop muted playsInline className="home-bg-video">
-                <source src="/video/Goal.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="home-content">
-                <h1>{typedText}<span className="typing-cursor">|</span></h1>
-                <p>Hi, I'm <strong>Shubham Adhav</strong>, a full-stack developer with a passion for building high-quality, scalable web applications. Welcome to my professional portfolio where I showcase my skills, experiences, and projects.</p>
-                <a href="https://www.linkedin.com/in/shubham-adhav-patil-b1b743299/" target="_blank" rel="noopener noreferrer" className="linkedin-link">
-                  <img src="/image/linkdin.jpeg" alt="LinkedIn" className="linkedin-icon" />
-                </a>
-                <a href="#" className="instagram-link" onClick={e => { e.preventDefault(); alert('Instagram is disabled for some reasons!'); }}>
-                  <img src="/image/insta.jpeg" alt="Instagram" className="instagram-icon" />
-                </a>
-              </div>
-            </div>
+      {/* MAIN CONTENT */}
+      <main className="main-content">
 
-            {/* About Section */}
-            <div className="home-section-divider"></div>
-            <div className="about-video-bg">
-              <video autoPlay loop muted playsInline className="about-bg-video">
-                <source src="/video/building.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="about-content">
-                <h2>About Me</h2>
-                <p>I'm a software developer with a strong foundation in computer science and hands-on experience in modern web technologies. My journey began with curiosity for how websites work, and over time, it evolved into a deep passion for crafting powerful user experiences. I enjoy solving real-world problems, collaborating with teams, and continually learning new technologies to stay ahead in this fast-paced industry.</p>
-                <ul className="about-highlights">
-                  <li>🎓 Completed my post-graduation (PG) in MCA.</li>
-                  <li>💼 Interned at Internship Studio.</li>
-                  <li>🖥️ Currently working at Devcon Software Solution.</li>
-                </ul>
-                <p>When I'm not coding, you can find me exploring new tech blogs, reading productivity books, or experimenting with creative UI designs.</p>
-              </div>
-            </div>
 
-            {/* Experience Section */}
-            <div className="home-section-divider"></div>
-            <div className="experience-video-bg">
-              <video autoPlay loop muted playsInline className="experience-bg-video">
-                <source src="/video/building.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="experience-content">
-                <h2>Work Experience</h2>
-                <div className="experience-list">
-                  <div className="experience-item">
-                    <div className="experience-header">
-                      <h3>MERN Developer</h3>
-                      <span className="experience-date">Dec 2025 - Present</span>
+        <section className="showcase-container">
+          <div className="showcase-scroll" key={activeTab}>
+            {/* HOME TAB (Hero + Projects) */}
+            {activeTab === 'home' && (
+              <>
+                <div id="card-hero" className="mockup-card hero-card">
+                  <div className="hero-content">
+                    <div className="hero-profile-header">
+                      <div className="hero-img-container">
+                        <img src={ownerImg} alt="Shubham Adhav" className="hero-profile-img" />
+                        <div className="hero-status-tag">Available for Work</div>
+                      </div>
                     </div>
-                    <p className="experience-company">Nimbja Security Solution Pvt Ltd</p>
-                    <p className="experience-description">Developing full-stack applications using MERN stack (MongoDB, Express.js, React.js, Node.js) for enterprise security solutions.</p>
+
+                    <div className="hero-greeting">👋 Hey there!</div>
+                    <h1 className="hero-name">I'm <span>Shubham Adhav</span></h1>
+                    <div className="hero-role-pill">🧑‍💻 Full Stack Developer @ Nimbusja</div>
+
+                    <p className="hero-value">
+                      MCA Post-Graduate (2024-2026) <br />
+                      Building scalable web solutions & turning complex problems into elegant digital experiences.
+                    </p>
+
+                    <div className="hero-exp-badges">
+                      <div className="hero-badge" title="Nimbusja Security">N</div>
+                      <div className="hero-badge" title="Internship Studio">I</div>
+                      <div className="hero-badge" title="WorknAI">W</div>
+                    </div>
+
+                    <div className="hero-social-links">
+                      <a href="https://www.linkedin.com/in/shubhamadhav007/" target="_blank" className="social-pill linkedin">LinkedIn</a>
+                      <a href="https://github.com/" target="_blank" className="social-pill github">GitHub</a>
+                      <a href="mailto:adhavshubham628@gmail.com" target="_blank" rel="noopener noreferrer" className="social-pill gmail">Gmail</a>
+                    </div>
+
+                    <div className="hero-btns">
+                      <button className="btn-primary" onClick={() => navigateTo('about')}>My Story ↗</button>
+                    </div>
                   </div>
-                  <div className="experience-item">
-                    <div className="experience-header">
-                      <h3>Intern</h3>
-                      <span className="experience-date">Jul 2025 - Oct 2025</span>
+                </div>
+
+                {projects.map((project) => (
+                  <div key={project.id} className={`mockup-card ${project.theme || ''}`}>
+                    <img src={project.img} alt={project.title} className="mockup-img" />
+                    <div className="mockup-overlay">
+                      <h3 className="mockup-title">{project.title}</h3>
+                      <p className="mockup-desc">{project.desc}</p>
+                      <div className="p-tech-tags">
+                        {project.tech.map(t => <span key={t} className="p-tag">{t}</span>)}
+                      </div>
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-link">Visit Project ↗</a>
                     </div>
-                    <p className="experience-company">Internship Studi</p>
-                    <p className="experience-description">Gained practical experience in web development, collaborated with senior developers, and contributed to various frontend and backend projects.</p>
                   </div>
-                  <div className="experience-item">
-                    <div className="experience-header">
-                      <h3>Intern</h3>
-                      <span className="experience-date">Jan 2025 - Jun 2025</span>
+                ))}
+              </>
+            )}
+
+            {/* PROJECTS ONLY TAB */}
+            {activeTab === 'projects' && projects.map((project) => (
+              <div key={project.id} className={`mockup-card ${project.theme || ''}`}>
+                <img src={project.img} alt={project.title} className="mockup-img" />
+                <div className="mockup-overlay">
+                  <h3 className="mockup-title">{project.title}</h3>
+                  <p className="mockup-desc">{project.desc}</p>
+                  <div className="p-tech-tags">
+                    {project.tech.map(t => <span key={t} className="p-tag">{t}</span>)}
+                  </div>
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-link">Visit Project ↗</a>
+                </div>
+              </div>
+            ))}
+
+            {/* ABOUT TAB */}
+            {activeTab === 'about' && (
+              <>
+                <div className="mockup-card text-card">
+                  <div className="card-content-inner">
+                    <h2 className="section-title">About Me</h2>
+                    <p className="about-text">
+                      I'm a software developer with a strong foundation in computer science and hands-on experience in modern web technologies.
+                      My journey began with curiosity for how websites work, and over time, it evolved into a deep passion for crafting powerful user experiences.
+                    </p>
+                    <div className="about-highlights">
+                      <div>🎓 MCA (2024-2026)</div>
+                      <div>💼 Interned @ WorknAI</div>
+                      <div>🖥️ Developer @ Nimbusja</div>
                     </div>
-                    <p className="experience-company">Worknai Pvt Ltd</p>
-                    <p className="experience-description">Worked on web development projects, learned best practices in coding standards, and assisted in implementing client requirements using modern web technologies.</p>
+                  </div>
+                </div>
+                <div className="mockup-card text-card">
+                  <div className="card-content-inner">
+                    <h2 className="section-title">Tools & Tech</h2>
+                    <div className="tools-grid">
+                      {tools.map((t, idx) => (
+                        <div key={idx} className="tool-box">
+                          <strong>{t.category}</strong>
+                          <p>{t.items}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* EXPERIENCE TAB */}
+            {activeTab === 'experience' && (
+              <div className="mockup-card text-card">
+                <div className="card-content-inner">
+                  <h2 className="section-title">Experience</h2>
+                  <div className="exp-timeline">
+                    {experience.map((exp, idx) => (
+                      <div key={idx} className="timeline-item">
+                        <div className="t-header">
+                          <strong>{exp.role}</strong>
+                          <span>{exp.date}</span>
+                        </div>
+                        <div className="t-company">{exp.company}</div>
+                        <ul className="t-points">
+                          {exp.points.map((p, i) => (
+                            <li key={i}>{p}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-            </div>
+            )}
 
-            {/* Projects Section */}
-            <div className="home-section-divider"></div>
-            <div className="projects-video-bg">
-              <video autoPlay loop muted playsInline className="projects-bg-video">
-                <source src="/video/tools.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="projects-content">
-                <h2>My Projects</h2>
-                <div className="projects-grid">
-                  <div className="project-card">
-                    <div className="project-header">
-                      <h3>Raktdaan - Blood Donation Platform</h3>
-                    </div>
-                    <p className="project-description">A comprehensive blood donation platform that connects blood donors with recipients. Built with modern web technologies to make blood donation accessible and efficient.</p>
-                    <div className="project-tech">
-                      <span className="tech-tag">React</span>
-                      <span className="tech-tag">Node.js</span>
-                      <span className="tech-tag">MongoDB</span>
-                    </div>
-                    <a href="https://www.raktdaan.online/" target="_blank" rel="noopener noreferrer" className="project-link">
-                      🔗 Visit Website
-                    </a>
-                  </div>
+            {/* CONTACT TAB */}
+            {activeTab === 'contact' && (
+              <div className="mockup-card text-card contact-card">
+                <div className="card-content-inner">
+                  <h2 className="section-title">Reach Me</h2>
+                  <form className="c-form" onSubmit={handleSubmit}>
+                    <input type="text" name="name" placeholder="Name" value={form.name} onChange={handleChange} required />
+                    <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
+                    <textarea name="message" placeholder="Message" value={form.message} onChange={handleChange} required></textarea>
+                    <button type="submit" className="btn-send" disabled={status === 'Sending...'}>
+                      {status === 'Sending...' ? 'Sending...' : 'Send Message'}
+                    </button>
+                  </form>
+                  {status && <p className="status-msg">{status}</p>}
                 </div>
               </div>
-            </div>
+            )}
+          </div>
 
-            {/* Tools Section */}
-            <div className="home-section-divider"></div>
-            <div className="tools-video-bg">
-              <video autoPlay loop muted playsInline className="tools-bg-video">
-                <source src="/video/tools.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="tools-content">
-                <h2>Tools & Technologies</h2>
-                <ul>
-                  <li><strong>Frontend:</strong> React, HTML5, CSS3, JavaScript, Tailwind CSS</li>
-                  <li><strong>Backend:</strong> Node.js, Express.js</li>
-                  <li><strong>Database:</strong> MongoDB, Firebase</li>
-                  <li><strong>Tools & Platforms:</strong> Git, GitHub, Postman, Vercel, Netlify</li>
-                  <li><strong>Others:</strong> REST APIs, JWT Auth, MVC Architecture</li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Resume Section */}
-            <div className="home-section-divider"></div>
-            <div className="resume-video-bg">
-              <video autoPlay loop muted playsInline className="resume-bg-video">
-                <source src="/video/resume.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="resume-content">
-                <h2>Resume</h2>
-                <a href="/image/ShubhamsResume.pdf" target="_blank" rel="noopener noreferrer" className="resume-link">
-                  📄 View or Download My Resume
-                </a>
-              </div>
-            </div>
-
-            {/* Contact Section */}
-            <div className="home-section-divider"></div>
-            <div className="contact-video-bg">
-              <video autoPlay loop muted playsInline className="contact-bg-video">
-                <source src="/video/gojo.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="contact-content">
-                <h2>Contact Me</h2>
-                <p>If you'd like to connect, collaborate, or discuss a project, feel free to drop a message below:</p>
-                <form onSubmit={handleSubmit}>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-                  <textarea
-                    name="message"
-                    placeholder="Your Message"
-                    value={form.message}
-                    onChange={handleChange}
-                    required
-                  ></textarea>
-                  <button type="submit" disabled={status === 'Sending...'}>Send</button>
-                </form>
-                {status && <p>{status}</p>}
-              </div>
-            </div>
-          </section>
-        )}
-        {activeSection === 'about' && (
-          <section id="about">
-            <div className="about-video-bg">
-              <video autoPlay loop muted playsInline className="about-bg-video">
-                <source src="/video/building.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="about-content">
-                <h2>About Me</h2>
-                <p>I'm a software developer with a strong foundation in computer science and hands-on experience in modern web technologies. My journey began with curiosity for how websites work, and over time, it evolved into a deep passion for crafting powerful user experiences. I enjoy solving real-world problems, collaborating with teams, and continually learning new technologies to stay ahead in this fast-paced industry.</p>
-                <ul className="about-highlights">
-                  <li>🎓 Completed my post-graduation (PG) in MCA.</li>
-                  <li>💼 Interned at Internship Studio.</li>
-                  <li>🖥️ Currently working at Devcon Software Solution.</li>
-                </ul>
-                <p>When I'm not coding, you can find me exploring new tech blogs, reading productivity books, or experimenting with creative UI designs.</p>
-              </div>
-            </div>
-          </section>
-        )}
-        {activeSection === 'experience' && (
-          <section id="experience">
-            <div className="experience-video-bg">
-              <video autoPlay loop muted playsInline className="experience-bg-video">
-                <source src="/video/building.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="experience-content">
-                <h2>Work Experience</h2>
-                <div className="experience-list">
-                  <div className="experience-item">
-                    <div className="experience-header">
-                      <h3>MERN Developer</h3>
-                      <span className="experience-date">Dec 2025 - Present</span>
-                    </div>
-                    <p className="experience-company">Nimbja Security Solution Pvt Ltd</p>
-                    <p className="experience-description">Developing full-stack applications using MERN stack (MongoDB, Express.js, React.js, Node.js) for enterprise security solutions.</p>
-                  </div>
-                  <div className="experience-item">
-                    <div className="experience-header">
-                      <h3>Intern</h3>
-                      <span className="experience-date">Jul 2025 - Oct 2025</span>
-                    </div>
-                    <p className="experience-company">Internship Studi</p>
-                    <p className="experience-description">Gained practical experience in web development, collaborated with senior developers, and contributed to various frontend and backend projects.</p>
-                  </div>
-                  <div className="experience-item">
-                    <div className="experience-header">
-                      <h3>Intern</h3>
-                      <span className="experience-date">Jan 2025 - Jun 2025</span>
-                    </div>
-                    <p className="experience-company">Worknai Pvt Ltd</p>
-                    <p className="experience-description">Worked on web development projects, learned best practices in coding standards, and assisted in implementing client requirements using modern web technologies.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-        {activeSection === 'projects' && (
-          <section id="projects">
-            <div className="projects-video-bg">
-              <video autoPlay loop muted playsInline className="projects-bg-video">
-                <source src="/video/tools.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="projects-content">
-                <h2>My Projects</h2>
-                <div className="projects-grid">
-                  <div className="project-card">
-                    <div className="project-header">
-                      <h3>Raktdaan - Blood Donation Platform</h3>
-                    </div>
-                    <p className="project-description">A comprehensive blood donation platform that connects blood donors with recipients. Built with modern web technologies to make blood donation accessible and efficient.</p>
-                    <div className="project-tech">
-                      <span className="tech-tag">React</span>
-                      <span className="tech-tag">Node.js</span>
-                      <span className="tech-tag">MongoDB</span>
-                    </div>
-                    <a href="https://www.raktdaan.online/" target="_blank" rel="noopener noreferrer" className="project-link">
-                      🔗 Visit Website
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-        {activeSection === 'tools' && (
-          <section id="tools">
-            <div className="tools-video-bg">
-              <video autoPlay loop muted playsInline className="tools-bg-video">
-                <source src="/video/tools.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="tools-content">
-                <h2>Tools & Technologies</h2>
-                <ul>
-                  <li><strong>Frontend:</strong> React, HTML5, CSS3, JavaScript, Tailwind CSS</li>
-                  <li><strong>Backend:</strong> Node.js, Express.js</li>
-                  <li><strong>Database:</strong> MongoDB, Firebase</li>
-                  <li><strong>Tools & Platforms:</strong> Git, GitHub, Postman, Vercel, Netlify</li>
-                  <li><strong>Others:</strong> REST APIs, JWT Auth, MVC Architecture</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-        )}
-        {activeSection === 'resume' && (
-          <section id="resume">
-            <div className="resume-video-bg">
-              <video autoPlay loop muted playsInline className="resume-bg-video">
-                <source src="/video/resume.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="resume-content">
-                <h2>Resume</h2>
-                <a href="/image/ShubhamsResume.pdf" target="_blank" rel="noopener noreferrer" className="resume-link">
-                  📄 View or Download My Resume
-                </a>
-              </div>
-            </div>
-          </section>
-        )}
-        {activeSection === 'contact' && (
-          <section id="contact">
-            <div className="contact-video-bg">
-              <video autoPlay loop muted playsInline className="contact-bg-video">
-                <source src="/video/gojo.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="contact-content">
-                <h2>Contact Me</h2>
-                <p>If you'd like to connect, collaborate, or discuss a project, feel free to drop a message below:</p>
-                <form onSubmit={handleSubmit}>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-                  <textarea
-                    name="message"
-                    placeholder="Your Message"
-                    value={form.message}
-                    onChange={handleChange}
-                    required
-                  ></textarea>
-                  <button type="submit" disabled={status === 'Sending...'}>Send</button>
-                </form>
-                {status && <p>{status}</p>}
-              </div>
-            </div>
-          </section>
-        )}
+          <div className="made-in-framer">
+            <span>⚡</span> Crafted by Shubham
+          </div>
+        </section>
       </main>
     </div>
   );

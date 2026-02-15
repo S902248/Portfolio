@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import './developer-desk.css';
 
 const PROJECT_PREVIEW_URL = 'https://your-project-preview-url.com'; // Replace with your live project or a demo
-const RESUME_URL = '/image/ShubhamsResume.pdf';
+const RESUME_URL = '/image/shubh.pdf';
 const LOFI_URL = '/music/bgm.mp3'; // Use local music file
 
 const MINI_GAMES = [
@@ -145,7 +145,7 @@ const DeveloperDesk = () => {
       {surgeMode && (
         <div className="surge-overlay">
           <div className="surge-terminal-glow">
-            <div className="surge-terminal-bar">Surge Mode <span style={{float:'right', cursor:'pointer'}} onClick={exitSurgeMode}>✖</span></div>
+            <div className="surge-terminal-bar">Surge Mode <span style={{ float: 'right', cursor: 'pointer' }} onClick={exitSurgeMode}>✖</span></div>
             <div className="surge-terminal-content">
               <pre>{`$ ${typing}${typing.length < 12 ? '_' : ''}`}</pre>
               <div className="surge-popup">Entering Developer Surge Mode...</div>
@@ -162,25 +162,25 @@ const DeveloperDesk = () => {
           <button onClick={toggleMusic} className="music-play-btn">
             {musicPlaying ? '❚❚ Pause' : '► Play'}
           </button>
-          <span className="music-logo" role="img" aria-label="music" style={{fontSize:'1.6rem', marginLeft:'0.7rem', marginRight:'0.5rem'}}>
+          <span className="music-logo" role="img" aria-label="music" style={{ fontSize: '1.6rem', marginLeft: '0.7rem', marginRight: '0.5rem' }}>
             🎵
           </span>
           <input type="range" min="0" max="1" step="0.01" defaultValue="1" onChange={e => { audioRef.current.volume = e.target.value; }} />
-          <span style={{marginLeft:'0.5rem'}}>Lofi Coding Music</span>
-          <button className="music-close-btn" style={{marginLeft:'1rem', fontSize:'1.2rem', background:'none', border:'none', color:'#b721ff', cursor:'pointer'}} onClick={() => { setShowMusic(false); audioRef.current.pause(); setMusicPlaying(false); }} title="Close">✖</button>
+          <span style={{ marginLeft: '0.5rem' }}>Lofi Coding Music</span>
+          <button className="music-close-btn" style={{ marginLeft: '1rem', fontSize: '1.2rem', background: 'none', border: 'none', color: '#b721ff', cursor: 'pointer' }} onClick={() => { setShowMusic(false); audioRef.current.pause(); setMusicPlaying(false); }} title="Close">✖</button>
         </div>
       )}
       {/* Terminal Overlay */}
       {showTerminal && (
         <div className="terminal-overlay" onClick={() => setShowTerminal(false)}>
           <div className="terminal-window" onClick={e => e.stopPropagation()}>
-            <div className="terminal-bar">Fake CLI <span style={{float:'right', cursor:'pointer'}}>✖</span></div>
+            <div className="terminal-bar">Fake CLI <span style={{ float: 'right', cursor: 'pointer' }}>✖</span></div>
             <div className="terminal-content">
               <pre>$ npm start
-Starting the dev server...
-✔ Compiled successfully!
+                Starting the dev server...
+                ✔ Compiled successfully!
 
-$ _</pre>
+                $ _</pre>
             </div>
           </div>
         </div>
@@ -189,8 +189,8 @@ $ _</pre>
       {showEasterEgg && (
         <div className="easteregg-overlay" onClick={() => setShowEasterEgg(false)}>
           <div className="easteregg-message" onClick={e => e.stopPropagation()}>
-            ☕ You found the coffee! Take a break, developer!<br/>
-            <span style={{fontSize:'2rem'}}>😄</span>
+            ☕ You found the coffee! Take a break, developer!<br />
+            <span style={{ fontSize: '2rem' }}>😄</span>
           </div>
         </div>
       )}
@@ -198,7 +198,7 @@ $ _</pre>
       {showGames && (
         <div className="games-modal" onClick={closeGames}>
           <div className="games-window" onClick={e => e.stopPropagation()}>
-            <div className="games-bar">Mini-Game Portal <span style={{float:'right', cursor:'pointer'}} onClick={closeGames}>✖</span></div>
+            <div className="games-bar">Mini-Game Portal <span style={{ float: 'right', cursor: 'pointer' }} onClick={closeGames}>✖</span></div>
             <div className="games-list">
               {MINI_GAMES.map(g => (
                 <button key={g.key} className={`game-btn${gamesPlayed[g.key] ? ' played' : ''}`} onClick={() => playGame(g.key)}>{g.name} {gamesPlayed[g.key] && '✔'}</button>
